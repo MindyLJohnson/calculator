@@ -41,19 +41,27 @@ function operate(aStr, bStr, operatorStr) {
 };
 
 function setupExpression(e) {    
-    if (e.target.classList[0] === "digit" && operatorStr === '') {
+    if ((e.target.classList[0] === "digit" || e.target.innerText === '-') && operatorStr === '') {
+        if (e.target.innerText === '.' && aStr.includes('.')) {
+            return;
+        }
+
         aStr += e.target.innerText;
     }
-    else if (e.target.classList[0] === "operator" && bStr === '') {
+    else if (e.target.classList[0] === "operator" && aStr !== '' && bStr === '') {
         operatorStr += e.target.innerText;
     }
     else if (e.target.classList[0] === "digit" && operatorStr !== '') {
+        if (e.target.innerText === '.' && bStr.includes('.')) {
+            return;
+        }
+
         bStr += e.target.innerText;
     }
 
     let result = aStr + operatorStr + bStr;
 
-    if (e.target.id === "equals" && operatorStr !== '') {
+    if (e.target.id === "equals" && bStr !== '') {
         result = operate(aStr, bStr, operatorStr)
     }
     else if (e.target.classList[0] === "operator" && bStr !== '') {
