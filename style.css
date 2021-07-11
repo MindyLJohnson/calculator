@@ -52,10 +52,6 @@ button.digit {
     width: 33%;
 }
 
-button#back, #clear {
-    width: 50%;
-}
-
-button.operator, #equals {
+button.operator, #action-equals, #action-clear {
     width: 100%;
 }

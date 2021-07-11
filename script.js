@@ -41,7 +41,7 @@ function operate(aStr, bStr, operatorStr) {
 };
 
 function setupExpression(e) {    
-    if ((e.target.classList[0] === "digit" || e.target.innerText === '-') && operatorStr === '') {
+    if (e.target.classList[0] === "digit" && operatorStr === '') {
         if (e.target.innerText === '.' && aStr.includes('.')) {
             return;
         }
@@ -61,8 +61,11 @@ function setupExpression(e) {
 
     let result = aStr + operatorStr + bStr;
 
-    if (e.target.id === "equals" && bStr !== '') {
+    if (e.target.id === "action-equals" && bStr !== '') {
         result = operate(aStr, bStr, operatorStr)
+        aStr = '';
+        bStr = '';
+        operatorStr = '';
     }
     else if (e.target.classList[0] === "operator" && bStr !== '') {
         result = operate(aStr, bStr, operatorStr);
@@ -71,13 +74,19 @@ function setupExpression(e) {
         operatorStr = '';
         operatorStr += e.target.innerText;
     }
-    else if (e.target.id === "back") {
+    else if (e.target.id === "action-back") {
         if (bStr !== '') bStr = bStr.slice(0, -1);
         else if (operatorStr !== '') operatorStr = operatorStr.slice(0, -1);
         else if (aStr !== '') aStr = aStr.slice(0, -1);
         result = aStr + operatorStr + bStr;
     }
-    else if (e.target.id === "clear") {
+    else if (e.target.id === "action-plusminus") {
+        if (bStr !== '') bStr *= -1;
+        else if (aStr !== '') aStr *= -1;
+
+        result = aStr + operatorStr + bStr;
+    }
+    else if (e.target.id === "action-clear") {
         aStr = '';
         bStr = '';
         operatorStr = '';
