@@ -80,6 +80,11 @@ function setupExpression(e) {
         else if (aStr !== '') aStr = aStr.slice(0, -1);
         result = aStr + operatorStr + bStr;
     }
+    else if (e.target.id === "action-percent") {
+        if (bStr !== '') bStr = bStr/100;
+        else if (aStr !== '') aStr = aStr/100;
+        result = aStr + operatorStr + bStr;
+    }
     else if (e.target.id === "action-plusminus") {
         if (bStr !== '') bStr *= -1;
         else if (aStr !== '') aStr *= -1;
