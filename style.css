@@ -6,13 +6,7 @@ body {
 #calculator {
     display: grid;
     width: 30%;
-    grid-template-areas: 
-        'display display display display display'
-        'digits digits digits operators actions'
-        'digits digits digits operators actions'
-        'digits digits digits operators actions'
-        'digits digits digits operators actions';
-    grid-template-columns: 1fr 1fr 1fr 1fr 2fr;
+    grid-template-areas: 'display' 'buttons';
     border: solid thin;
 }
 
@@ -26,32 +20,8 @@ body {
     height: 2rem;
 }
 
-.digits {
-    grid-area: digits;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.operators {
-    grid-area: operators;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.actions {
-    grid-area: actions;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.digit, .operator, .action {
-    flex-grow: 1;
-}
-
-button.digit {
-    width: 33%;
-}
-
-button.operator, #action-equals, #action-clear {
-    width: 100%;
+.buttons {
+    grid-area: buttons;
+    display: grid;
+    grid-template-columns: repeat(5, auto);
 }

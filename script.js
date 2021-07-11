@@ -63,7 +63,7 @@ function setupExpression(e) {
 
     if (e.target.id === "action-equals" && bStr !== '') {
         result = operate(aStr, bStr, operatorStr)
-        aStr = '';
+        aStr = result;
         bStr = '';
         operatorStr = '';
     }
