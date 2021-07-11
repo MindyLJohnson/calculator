@@ -14,13 +14,13 @@ function divide(a, b) {
     return a/b;
 };
 
-function operate(aStr, bStr, operandStr) {
+function operate(aStr, bStr, operatorStr) {
     const a = Number(aStr);
     const b = Number(bStr);
-    const operand = operandStr;
+    const operator = operatorStr;
     let result = null;
 
-    switch (operand) {
+    switch (operator) {
         case "+": 
             result = sum(a, b);
             break;
@@ -41,30 +41,36 @@ function operate(aStr, bStr, operandStr) {
 };
 
 function setupExpression(e) {    
-    if (e.target.classList[0] === "digit" && operandStr === '') {
+    if (e.target.classList[0] === "digit" && operatorStr === '') {
         aStr += e.target.innerText;
     }
-    else if (e.target.classList[0] === "operand") {
-        operandStr += e.target.innerText;
+    else if (e.target.classList[0] === "operator" && bStr === '') {
+        operatorStr += e.target.innerText;
     }
-    else if (e.target.classList[0] === "digit" && operandStr !== '') {
+    else if (e.target.classList[0] === "digit" && operatorStr !== '') {
         bStr += e.target.innerText;
+    }
+
+    let result = aStr + operatorStr + bStr;
+
+    if (e.target.id === "equals" && operatorStr !== '') {
+        result = operate(aStr, bStr, operatorStr)
+    }
+    else if (e.target.classList[0] === "operator" && bStr !== '') {
+        result = operate(aStr, bStr, operatorStr);
+        aStr = result;
+        bStr = '';
+        operatorStr = '';
+        operatorStr += e.target.innerText;
     }
     else if (e.target.id === "clear") {
         aStr = '';
         bStr = '';
-        operandStr = '';
-    };
+        operatorStr = '';
+        result = aStr + operatorStr + bStr;
+    }
 
-    updateDisplay(aStr+operandStr+bStr);
-
-    if (e.target.id === "equals") {
-        let result = operate(aStr, bStr, operandStr);
-        updateDisplay(result);
-        aStr = '';
-        bStr = '';
-        operandStr = '';
-    };
+    updateDisplay(result);
 }
 
 function updateDisplay(inputStr) {
@@ -74,7 +80,7 @@ function updateDisplay(inputStr) {
 
 let aStr = '';
 let bStr = '';
-let operandStr = '';
+let operatorStr = '';
 
 const inputButtons = document.querySelectorAll('button');
 inputButtons.forEach(inputButton => {

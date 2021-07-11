@@ -8,10 +8,10 @@ body {
     width: 25%;
     grid-template-areas: 
         'display display display display display'
-        'digits digits digits operands actions'
-        'digits digits digits operands actions'
-        'digits digits digits operands actions'
-        'digits digits digits operands actions';
+        'digits digits digits operators actions'
+        'digits digits digits operators actions'
+        'digits digits digits operators actions'
+        'digits digits digits operators actions';
     grid-template-columns: 1fr 1fr 1fr 1fr 2fr;
     border: solid thin;
 }
@@ -32,8 +32,8 @@ body {
     flex-wrap: wrap;
 }
 
-.operands {
-    grid-area: operands;
+.operators {
+    grid-area: operators;
     display: flex;
     flex-wrap: wrap;
 }
@@ -44,7 +44,7 @@ body {
     flex-wrap: wrap;
 }
 
-.digit, .operand, .action {
+.digit, .operator, .action {
     flex-grow: 1;
 }
 
@@ -52,6 +52,6 @@ button.digit {
     width: 33%;
 }
 
-button.operand, .action {
+button.operator, .action {
     width: 100%;
 }
