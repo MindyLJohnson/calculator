@@ -71,6 +71,12 @@ function setupExpression(e) {
         operatorStr = '';
         operatorStr += e.target.innerText;
     }
+    else if (e.target.id === "back") {
+        if (bStr !== '') bStr = bStr.slice(0, -1);
+        else if (operatorStr !== '') operatorStr = operatorStr.slice(0, -1);
+        else if (aStr !== '') aStr = aStr.slice(0, -1);
+        result = aStr + operatorStr + bStr;
+    }
     else if (e.target.id === "clear") {
         aStr = '';
         bStr = '';

@@ -5,7 +5,7 @@ body {
 
 #calculator {
     display: grid;
-    width: 25%;
+    width: 30%;
     grid-template-areas: 
         'display display display display display'
         'digits digits digits operators actions'
@@ -52,6 +52,10 @@ button.digit {
     width: 33%;
 }
 
-button.operator, .action {
+button#back, #clear {
+    width: 50%;
+}
+
+button.operator, #equals {
     width: 100%;
 }
