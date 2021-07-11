@@ -43,16 +43,20 @@ function operate(aStr, bStr, operandStr) {
 function setupExpression(e) {    
     if (e.target.classList[0] === "digit" && operandStr === '') {
         aStr += e.target.innerText;
-        updateDisplay(aStr+operandStr+bStr);
     }
     else if (e.target.classList[0] === "operand") {
         operandStr += e.target.innerText;
-        updateDisplay(aStr+operandStr+bStr);
     }
     else if (e.target.classList[0] === "digit" && operandStr !== '') {
         bStr += e.target.innerText;
-        updateDisplay(aStr+operandStr+bStr);
+    }
+    else if (e.target.id === "clear") {
+        aStr = '';
+        bStr = '';
+        operandStr = '';
     };
+
+    updateDisplay(aStr+operandStr+bStr);
 
     if (e.target.id === "equals") {
         let result = operate(aStr, bStr, operandStr);
@@ -61,14 +65,6 @@ function setupExpression(e) {
         bStr = '';
         operandStr = '';
     };
-
-    if (e.target.id === "clear") {
-        aStr = '';
-        bStr = '';
-        operandStr = '';
-        updateDisplay(aStr+operandStr+bStr);
-    };
-
 }
 
 function updateDisplay(inputStr) {
