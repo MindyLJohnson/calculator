@@ -4,6 +4,36 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <div id="calculator">
+            <div class="display">
+                <label for="user-input"></label>
+                <input type="text" id="user-input" class="calc-display">
+            </div>
+            <div class="digits">
+                <button id="digit-7" class="digit">7</button>
+                <button id="digit-8" class="digit">8</button>
+                <button id="digit-9" class="digit">9</button>
+                <button id="digit-4" class="digit">4</button>
+                <button id="digit-5" class="digit">5</button>
+                <button id="digit-6" class="digit">6</button>
+                <button id="digit-1" class="digit">1</button>
+                <button id="digit-2" class="digit">2</button>
+                <button id="digit-3" class="digit">3</button>
+                <button id="digit-0" class="digit">0</button>
+                <button id="decimal" class="digit">.</button>
+                <button id="percent" class="digit">%</button>
+            </div>
+            <div class="operands">
+                <button id="operand-sum" class="operand">+</button>
+                <button id="operand-sub" class="operand">-</button>
+                <button id="operand-mult" class="operand">*</button>
+                <button id="operand-div" class="operand">/</button>
+            </div>
+            <div class="actions">
+                <button id="equals" class="action">=</button>
+                <button id="clear" class="action">Clear</button>
+            </div>
+        </div>
         <script src="script.js"></script>
     </body>
 </html>
