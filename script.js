@@ -106,11 +106,109 @@ function updateDisplay(inputStr) {
     userInput.value = inputStr;
 }
 
+function captureShiftKey(e) {
+    if (e.code.includes('Shift')) {
+        shiftKeyDown = true;
+    }
+}
+
+function mapKeyPress(e) {
+    if (shiftKeyDown) {
+        switch(e.code) {
+            case 'Digit8':
+                document.getElementById('operator-mult').click();
+                break;    
+            case 'Equal':
+                document.getElementById('operator-sum').click();
+                break;
+            case 'Backspace':
+                document.getElementById('action-clear').click();
+                break;
+        }
+    }
+    else {
+        switch(e.code) {
+            case 'Numpad0':
+            case 'Digit0':
+                document.getElementById('digit-0').click();
+                break;
+            case 'Numpad1':
+            case 'Digit1':
+                document.getElementById('digit-1').click();
+                break;
+            case 'Numpad2':
+            case 'Digit2':
+                document.getElementById('digit-2').click();
+                break;
+            case 'Numpad3':
+            case 'Digit3':
+                document.getElementById('digit-3').click();
+                break;
+            case 'Numpad4':
+            case 'Digit4':
+                document.getElementById('digit-4').click();
+                break;
+            case 'Numpad5':
+            case 'Digit5':
+                document.getElementById('digit-5').click();
+                break;
+            case 'Numpad6':
+            case 'Digit6':
+                document.getElementById('digit-6').click();
+                break;
+            case 'Numpad7':
+            case 'Digit7':
+                document.getElementById('digit-7').click();
+                break;
+            case 'Numpad8':
+            case 'Digit8':
+                document.getElementById('digit-8').click();
+                break;
+            case 'Numpad9':
+            case 'Digit9':
+                document.getElementById('digit-9').click();
+                break;
+            case 'NumpadDecimal':
+            case 'Period':
+                document.getElementById('decimal').click();
+                break;
+            case 'NumpadDivide':
+            case 'Slash':
+                document.getElementById('operator-div').click();
+                break;
+            case 'NumpadMultiply':
+                document.getElementById('operator-mult').click();
+                break;
+            case 'NumpadSubtract':
+            case 'Minus':
+                document.getElementById('operator-sub').click();
+                break;
+            case 'NumpadAdd':
+                document.getElementById('operator-sum').click();
+                break;
+            case 'NumpadEnter':
+            case 'Enter':
+            case 'Equal':
+                document.getElementById('action-equals').click();
+                break;
+            case 'Backspace':
+                document.getElementById('action-back').click();
+                break;
+        }    
+    }
+
+    if (shiftKeyDown) shiftKeyDown = false;
+}
+
 let aStr = '';
 let bStr = '';
 let operatorStr = '';
+let shiftKeyDown = false;
 
 const inputButtons = document.querySelectorAll('button');
 inputButtons.forEach(inputButton => {
     inputButton.addEventListener('click', setupExpression);
 });
+
+window.addEventListener('keydown', captureShiftKey);
+window.addEventListener('keyup', mapKeyPress);
